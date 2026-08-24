@@ -1,0 +1,68 @@
+{
+  "version": "rgf/0-draft",
+  "meta": {
+    "title": "Spaghetti with Garlic Oil (reserve pasta water)",
+    "servings": "2",
+    "source": "original fixture (multi-output drain)"
+  },
+  "ingredients": [
+    { "id": "water", "text": "well-salted water for boiling" },
+    { "id": "pasta", "text": "8 oz (225 g) spaghetti" },
+    { "id": "oil", "text": "3 Tbsp olive oil" },
+    { "id": "garlic", "text": "3 cloves garlic, thinly sliced" },
+    { "id": "chili", "text": "pinch red pepper flakes", "notes": ["optional"] },
+    { "id": "parsley", "text": "handful chopped parsley" },
+    { "id": "cheese", "text": "grated Parmesan", "notes": ["to taste"] }
+  ],
+  "steps": [
+    {
+      "id": "boil",
+      "kind": "transform",
+      "instruction": "Boil pasta in salted water until al dente",
+      "label": "boil",
+      "uses": [
+        { "id": "u-water", "source": { "kind": "ingredient", "ingredientId": "water" } },
+        { "id": "u-pasta", "source": { "kind": "ingredient", "ingredientId": "pasta" } }
+      ],
+      "outputs": [{ "id": "out-pot", "name": "pasta in cooking water" }]
+    },
+    {
+      "id": "drain",
+      "kind": "transform",
+      "instruction": "Drain pasta, reserving cooking water",
+      "label": "drain / reserve",
+      "uses": [
+        { "id": "u-pot", "source": { "kind": "output", "outputId": "out-pot" } }
+      ],
+      "outputs": [
+        { "id": "out-pasta", "name": "drained pasta" },
+        { "id": "out-pw", "name": "reserved pasta water" }
+      ]
+    },
+    {
+      "id": "oil-garlic",
+      "kind": "transform",
+      "instruction": "Warm oil with garlic and chili until fragrant",
+      "label": "sizzle",
+      "uses": [
+        { "id": "u-oil", "source": { "kind": "ingredient", "ingredientId": "oil" } },
+        { "id": "u-gar", "source": { "kind": "ingredient", "ingredientId": "garlic" } },
+        { "id": "u-chili", "source": { "kind": "ingredient", "ingredientId": "chili" } }
+      ],
+      "outputs": [{ "id": "out-oil", "name": "garlic oil" }]
+    },
+    {
+      "id": "toss",
+      "kind": "transform",
+      "instruction": "Toss pasta with garlic oil, splash of pasta water, parsley, and cheese",
+      "label": "toss",
+      "uses": [
+        { "id": "u-dpasta", "source": { "kind": "output", "outputId": "out-pasta" } },
+        { "id": "u-oilout", "source": { "kind": "output", "outputId": "out-oil" } },
+        { "id": "u-pw", "source": { "kind": "output", "outputId": "out-pw" }, "portion": "splash" },
+        { "id": "u-pars", "source": { "kind": "ingredient", "ingredientId": "parsley" } },
+        { "id": "u-ch", "source": { "kind": "ingredient", "ingredientId": "cheese" } }
+      ]
+    }
+  ]
+}

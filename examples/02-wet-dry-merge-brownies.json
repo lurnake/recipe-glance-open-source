@@ -1,0 +1,125 @@
+{
+  "version": "rgf/0-draft",
+  "meta": {
+    "title": "Weeknight Cocoa Brownies",
+    "servings": "16 squares",
+    "source": "original fixture (brownies-class merge)",
+    "notes": "Inspired by tabular recipe notation; original recipe text."
+  },
+  "ingredients": [
+    { "id": "butter", "text": "4 oz (115 g) unsalted butter" },
+    { "id": "sugar", "text": "1 cup (200 g) sugar" },
+    { "id": "vanilla", "text": "1/4 tsp (2.5 mL) vanilla extract" },
+    { "id": "espresso", "text": "1 shot (4 Tbsp; 60 mL) strong coffee or espresso" },
+    { "id": "eggs", "text": "2 large (100 g) eggs" },
+    { "id": "flour", "text": "1/2 cup (80 g) all-purpose flour" },
+    { "id": "cocoa", "text": "1/3 cup (80 g) cocoa powder" },
+    { "id": "soda", "text": "1/4 tsp (1.3 g) baking soda" },
+    { "id": "salt", "text": "1/4 tsp (1.5 g) table salt" }
+  ],
+  "steps": [
+    {
+      "id": "s-pan",
+      "kind": "setup",
+      "instruction": "Butter and flour an 8x8-in pan",
+      "label": "Butter and flour an 8x8-in pan",
+      "uses": [],
+      "equipment": ["8x8-in pan"]
+    },
+    {
+      "id": "s-heat",
+      "kind": "setup",
+      "instruction": "Preheat oven to 350°F (170°C)",
+      "label": "Preheat oven",
+      "uses": [],
+      "temperature": { "raw": "350°F (170°C)", "value": 350, "unit": "F" },
+      "duration": { "raw": "15 min", "minMinutes": 15, "maxMinutes": 15 },
+      "attention": "passive",
+      "equipment": ["oven"]
+    },
+    {
+      "id": "s-melt",
+      "kind": "transform",
+      "instruction": "Melt the butter",
+      "label": "melt",
+      "uses": [
+        { "id": "u-butter", "source": { "kind": "ingredient", "ingredientId": "butter" } }
+      ],
+      "duration": { "raw": "2 min", "minMinutes": 2, "maxMinutes": 2 },
+      "doneness": "just liquid, not browned",
+      "equipment": ["small saucepan"],
+      "outputs": [{ "id": "out-melted", "name": "melted butter" }]
+    },
+    {
+      "id": "s-wet",
+      "kind": "transform",
+      "instruction": "Mix melted butter with sugar, vanilla, and espresso",
+      "label": "mix",
+      "uses": [
+        { "id": "u-melted", "source": { "kind": "output", "outputId": "out-melted" } },
+        { "id": "u-sugar", "source": { "kind": "ingredient", "ingredientId": "sugar" } },
+        { "id": "u-vanilla", "source": { "kind": "ingredient", "ingredientId": "vanilla" } },
+        { "id": "u-espresso", "source": { "kind": "ingredient", "ingredientId": "espresso" } }
+      ],
+      "duration": { "raw": "1 min", "minMinutes": 1, "maxMinutes": 1 },
+      "doneness": "smooth and glossy",
+      "equipment": ["large bowl", "whisk"],
+      "outputs": [{ "id": "out-wet", "name": "wet mixture" }]
+    },
+    {
+      "id": "s-eggs",
+      "kind": "transform",
+      "instruction": "Mix in the eggs",
+      "label": "mix",
+      "uses": [
+        { "id": "u-wet", "source": { "kind": "output", "outputId": "out-wet" } },
+        { "id": "u-eggs", "source": { "kind": "ingredient", "ingredientId": "eggs" } }
+      ],
+      "duration": { "raw": "1 min", "minMinutes": 1, "maxMinutes": 1 },
+      "outputs": [{ "id": "out-wet2", "name": "wet + eggs" }]
+    },
+    {
+      "id": "s-dry",
+      "kind": "transform",
+      "instruction": "Mix flour, cocoa, baking soda, and salt",
+      "label": "mix",
+      "uses": [
+        { "id": "u-flour", "source": { "kind": "ingredient", "ingredientId": "flour" } },
+        { "id": "u-cocoa", "source": { "kind": "ingredient", "ingredientId": "cocoa" } },
+        { "id": "u-soda", "source": { "kind": "ingredient", "ingredientId": "soda" } },
+        { "id": "u-salt", "source": { "kind": "ingredient", "ingredientId": "salt" } }
+      ],
+      "duration": { "raw": "1 min", "minMinutes": 1, "maxMinutes": 1 },
+      "equipment": ["medium bowl"],
+      "outputs": [{ "id": "out-dry", "name": "dry mixture" }]
+    },
+    {
+      "id": "s-fold",
+      "kind": "transform",
+      "instruction": "Fold dry mixture into wet mixture",
+      "label": "fold in",
+      "uses": [
+        { "id": "u-wet2", "source": { "kind": "output", "outputId": "out-wet2" } },
+        { "id": "u-dry", "source": { "kind": "output", "outputId": "out-dry" } }
+      ],
+      "duration": { "raw": "1 min", "minMinutes": 1, "maxMinutes": 1 },
+      "doneness": "no dry streaks left",
+      "outputs": [{ "id": "out-batter", "name": "batter" }]
+    },
+    {
+      "id": "s-bake",
+      "kind": "transform",
+      "instruction": "Bake at 350°F (170°C) for 30 to 40 minutes",
+      "label": "bake",
+      "uses": [
+        { "id": "u-batter", "source": { "kind": "output", "outputId": "out-batter" } }
+      ],
+      "after": ["s-pan", "s-heat"],
+      "temperature": { "raw": "350°F (170°C)", "value": 350, "unit": "F" },
+      "duration": { "raw": "30–40 min", "minMinutes": 30, "maxMinutes": 40 },
+      "doneness": "a toothpick comes out with moist crumbs",
+      "attention": "passive",
+      "outputs": [{ "id": "out-brownies", "name": "brownies" }]
+    }
+  ]
+}

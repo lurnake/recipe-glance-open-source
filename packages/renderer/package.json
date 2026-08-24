@@ -1,0 +1,29 @@
+{
+  "name": "@recipe-glance/renderer",
+  "version": "0.0.1",
+  "description": "Render RGF layouts to escaped HTML/CSS",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./themes/*": "./themes/*"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@recipe-glance/layout": "workspace:*",
+    "@recipe-glance/schema": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.5"
+  }
+}

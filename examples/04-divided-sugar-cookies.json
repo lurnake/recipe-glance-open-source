@@ -1,0 +1,200 @@
+{
+  "version": "rgf/0-draft",
+  "meta": {
+    "title": "Crinkle Sugar Cookies (divided sugar)",
+    "servings": "24 cookies",
+    "source": "original fixture"
+  },
+  "ingredients": [
+    {
+      "id": "butter",
+      "text": "1/2 cup (113 g) unsalted butter, softened"
+    },
+    {
+      "id": "sugar",
+      "text": "1 cup (200 g) granulated sugar, divided",
+      "notes": [
+        "divided"
+      ]
+    },
+    {
+      "id": "egg",
+      "text": "1 large egg"
+    },
+    {
+      "id": "flour",
+      "text": "1 1/2 cups (180 g) all-purpose flour"
+    },
+    {
+      "id": "baking_powder",
+      "text": "1 tsp baking powder"
+    },
+    {
+      "id": "salt",
+      "text": "1/4 tsp salt"
+    }
+  ],
+  "steps": [
+    {
+      "id": "s-heat",
+      "kind": "setup",
+      "instruction": "Preheat oven to 350°F (175°C)",
+      "uses": [],
+      "temperature": {
+        "raw": "350°F (175°C)"
+      }
+    },
+    {
+      "id": "cream",
+      "kind": "transform",
+      "instruction": "Cream butter with 3/4 cup of the sugar",
+      "label": "cream",
+      "uses": [
+        {
+          "id": "u-butter",
+          "source": {
+            "kind": "ingredient",
+            "ingredientId": "butter"
+          }
+        },
+        {
+          "id": "u-sugar-dough",
+          "source": {
+            "kind": "ingredient",
+            "ingredientId": "sugar"
+          },
+          "portion": "3/4 cup for dough"
+        }
+      ],
+      "outputs": [
+        {
+          "id": "out-creamed",
+          "name": "creamed butter-sugar"
+        }
+      ]
+    },
+    {
+      "id": "egg-in",
+      "kind": "transform",
+      "instruction": "Beat in the egg",
+      "label": "beat in",
+      "uses": [
+        {
+          "id": "u-creamed",
+          "source": {
+            "kind": "output",
+            "outputId": "out-creamed"
+          }
+        },
+        {
+          "id": "u-egg",
+          "source": {
+            "kind": "ingredient",
+            "ingredientId": "egg"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "id": "out-wet",
+          "name": "wet dough base"
+        }
+      ]
+    },
+    {
+      "id": "dry",
+      "kind": "transform",
+      "instruction": "Mix flour, baking powder, and salt; combine with wet",
+      "label": "mix",
+      "uses": [
+        {
+          "id": "u-wet",
+          "source": {
+            "kind": "output",
+            "outputId": "out-wet"
+          }
+        },
+        {
+          "id": "u-flour",
+          "source": {
+            "kind": "ingredient",
+            "ingredientId": "flour"
+          }
+        },
+        {
+          "id": "u-bp",
+          "source": {
+            "kind": "ingredient",
+            "ingredientId": "baking_powder"
+          }
+        },
+        {
+          "id": "u-salt",
+          "source": {
+            "kind": "ingredient",
+            "ingredientId": "salt"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "id": "out-dough",
+          "name": "cookie dough"
+        }
+      ]
+    },
+    {
+      "id": "roll",
+      "kind": "transform",
+      "instruction": "Roll portions in remaining sugar",
+      "label": "roll in sugar",
+      "uses": [
+        {
+          "id": "u-dough",
+          "source": {
+            "kind": "output",
+            "outputId": "out-dough"
+          }
+        },
+        {
+          "id": "u-sugar-coat",
+          "source": {
+            "kind": "ingredient",
+            "ingredientId": "sugar"
+          },
+          "portion": "remaining 1/4 cup for coating"
+        }
+      ],
+      "outputs": [
+        {
+          "id": "out-balls",
+          "name": "sugar-coated dough balls"
+        }
+      ]
+    },
+    {
+      "id": "bake",
+      "kind": "transform",
+      "instruction": "Bake until edges are set, about 10–12 minutes",
+      "label": "bake",
+      "uses": [
+        {
+          "id": "u-balls",
+          "source": {
+            "kind": "output",
+            "outputId": "out-balls"
+          }
+        }
+      ],
+      "after": [
+        "s-heat"
+      ],
+      "duration": {
+        "raw": "10–12 min",
+        "minMinutes": 10,
+        "maxMinutes": 12
+      },
+      "attention": "passive"
+    }
+  ]
+}

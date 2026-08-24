@@ -1,0 +1,26 @@
+{
+  "name": "recipe-glance-open-source",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Recipe Glance Format (RGF) — operation-graph recipes with a basic open-source renderer",
+  "license": "MIT",
+  "scripts": {
+    "build": "pnpm -r run build",
+    "test": "pnpm -r run test",
+    "typecheck": "pnpm -r run typecheck",
+    "cli": "pnpm --filter @recipe-glance/cli start",
+    "validate:examples": "pnpm --filter @recipe-glance/cli start validate examples/*.json",
+    "preview:examples": "pnpm --filter @recipe-glance/cli start render --all --out-dir dist/previews",
+    "eval": "pnpm --filter @recipe-glance/eval eval"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "packageManager": "pnpm@9.15.9",
+  "devDependencies": {
+    "@types/node": "^22.10.7",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.5"
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "version": "rgf/0-draft",
+  "meta": {
+    "title": "Campfire Banana Boats",
+    "servings": "as many as you have bananas",
+    "source": "original fixture (missing quantities)",
+    "notes": "Deliberately underspecified amounts."
+  },
+  "ingredients": [
+    { "id": "banana", "text": "ripe bananas" },
+    { "id": "chocolate", "text": "chocolate chips or chopped chocolate", "notes": ["to taste"] },
+    { "id": "marshmallow", "text": "mini marshmallows", "notes": ["to taste"] },
+    { "id": "foil", "text": "aluminum foil" }
+  ],
+  "steps": [
+    {
+      "id": "slit",
+      "kind": "transform",
+      "instruction": "Slit each banana lengthwise through the peel, keeping the bottom intact",
+      "label": "slit",
+      "uses": [
+        { "id": "u-ban", "source": { "kind": "ingredient", "ingredientId": "banana" } }
+      ],
+      "outputs": [{ "id": "out-slit", "name": "slit bananas" }]
+    },
+    {
+      "id": "fill",
+      "kind": "transform",
+      "instruction": "Stuff with chocolate and marshmallows",
+      "label": "fill",
+      "uses": [
+        { "id": "u-slit", "source": { "kind": "output", "outputId": "out-slit" } },
+        { "id": "u-ch", "source": { "kind": "ingredient", "ingredientId": "chocolate" } },
+        { "id": "u-mm", "source": { "kind": "ingredient", "ingredientId": "marshmallow" } }
+      ],
+      "outputs": [{ "id": "out-filled", "name": "filled bananas" }]
+    },
+    {
+      "id": "wrap",
+      "kind": "transform",
+      "instruction": "Wrap in foil",
+      "label": "wrap",
+      "uses": [
+        { "id": "u-filled", "source": { "kind": "output", "outputId": "out-filled" } },
+        { "id": "u-foil", "source": { "kind": "ingredient", "ingredientId": "foil" } }
+      ],
+      "outputs": [{ "id": "out-wrapped", "name": "foil packets" }]
+    },
+    {
+      "id": "heat",
+      "kind": "transform",
+      "instruction": "Warm over coals or in a 375°F oven until gooey",
+      "label": "heat until gooey",
+      "uses": [
+        { "id": "u-wrapped", "source": { "kind": "output", "outputId": "out-wrapped" } }
+      ]
+    }
+  ],
+  "warnings": [
+    {
+      "code": "MISSING_AMOUNT",
+      "message": "Source recipe does not specify quantities for most ingredients",
+      "subjectIds": ["banana", "chocolate", "marshmallow"]
+    }
+  ]
+}

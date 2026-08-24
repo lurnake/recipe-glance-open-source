@@ -1,0 +1,391 @@
+{
+  "$ref": "#/definitions/RecipeDocument",
+  "definitions": {
+    "RecipeDocument": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string",
+          "const": "rgf/0-draft"
+        },
+        "meta": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 1
+            },
+            "servings": {
+              "type": "string"
+            },
+            "yield": {
+              "type": "string"
+            },
+            "source": {
+              "type": "string"
+            },
+            "notes": {
+              "type": "string"
+            },
+            "locale": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "title"
+          ],
+          "additionalProperties": false
+        },
+        "ingredients": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "text": {
+                "type": "string",
+                "minLength": 1
+              },
+              "quantityNote": {
+                "type": "string"
+              },
+              "itemNote": {
+                "type": "string"
+              },
+              "notes": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "evidence": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "sourceId": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "start": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "end": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "bbox": {
+                      "type": "object",
+                      "properties": {
+                        "x": {
+                          "type": "number"
+                        },
+                        "y": {
+                          "type": "number"
+                        },
+                        "w": {
+                          "type": "number"
+                        },
+                        "h": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "x",
+                        "y",
+                        "w",
+                        "h"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "snippet": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "sourceId"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "id",
+              "text"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "setup",
+                  "transform",
+                  "wait",
+                  "serve"
+                ]
+              },
+              "instruction": {
+                "type": "string",
+                "minLength": 1
+              },
+              "label": {
+                "type": "string"
+              },
+              "uses": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "source": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "kind": {
+                              "type": "string",
+                              "const": "ingredient"
+                            },
+                            "ingredientId": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          },
+                          "required": [
+                            "kind",
+                            "ingredientId"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "kind": {
+                              "type": "string",
+                              "const": "output"
+                            },
+                            "outputId": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          },
+                          "required": [
+                            "kind",
+                            "outputId"
+                          ],
+                          "additionalProperties": false
+                        }
+                      ]
+                    },
+                    "portion": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "source"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "after": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "outputs": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "duration": {
+                "type": "object",
+                "properties": {
+                  "raw": {
+                    "type": "string"
+                  },
+                  "minMinutes": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "maxMinutes": {
+                    "type": "number",
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "raw"
+                ],
+                "additionalProperties": false
+              },
+              "temperature": {
+                "type": "object",
+                "properties": {
+                  "raw": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "number"
+                  },
+                  "unit": {
+                    "type": "string",
+                    "enum": [
+                      "C",
+                      "F"
+                    ]
+                  }
+                },
+                "required": [
+                  "raw"
+                ],
+                "additionalProperties": false
+              },
+              "doneness": {
+                "type": "string"
+              },
+              "attention": {
+                "type": "string",
+                "enum": [
+                  "active",
+                  "passive"
+                ]
+              },
+              "equipment": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "evidence": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "sourceId": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "start": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "end": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "bbox": {
+                      "type": "object",
+                      "properties": {
+                        "x": {
+                          "type": "number"
+                        },
+                        "y": {
+                          "type": "number"
+                        },
+                        "w": {
+                          "type": "number"
+                        },
+                        "h": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "x",
+                        "y",
+                        "w",
+                        "h"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "snippet": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "sourceId"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "id",
+              "instruction",
+              "uses"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "minLength": 1
+              },
+              "message": {
+                "type": "string",
+                "minLength": 1
+              },
+              "subjectIds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "code",
+              "message"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "version",
+        "meta",
+        "ingredients",
+        "steps"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

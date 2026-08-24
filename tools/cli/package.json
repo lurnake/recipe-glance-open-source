@@ -1,0 +1,27 @@
+{
+  "name": "@recipe-glance/cli",
+  "version": "0.0.1",
+  "description": "CLI for validate / layout / render of RGF documents",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "rgf": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "tsx src/cli.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run --passWithNoTests"
+  },
+  "dependencies": {
+    "@recipe-glance/layout": "workspace:*",
+    "@recipe-glance/parse": "workspace:*",
+    "@recipe-glance/renderer": "workspace:*",
+    "@recipe-glance/schema": "workspace:*"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.5"
+  }
+}

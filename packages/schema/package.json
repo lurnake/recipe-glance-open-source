@@ -1,0 +1,30 @@
+{
+  "name": "@recipe-glance/schema",
+  "version": "0.0.1",
+  "description": "Recipe Glance Format (rgf/0-draft) schema and validation",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist", "json-schema"],
+  "scripts": {
+    "build": "tsc -p tsconfig.json && node --import tsx scripts/emit-json-schema.ts",
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.5",
+    "zod-to-json-schema": "^3.24.1"
+  }
+}

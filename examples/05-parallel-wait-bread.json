@@ -1,0 +1,154 @@
+{
+  "version": "rgf/0-draft",
+  "meta": {
+    "title": "No-Knead Skillet Bread (proof while prep)",
+    "servings": "1 loaf",
+    "source": "original fixture"
+  },
+  "ingredients": [
+    {
+      "id": "flour",
+      "text": "3 cups (360 g) bread flour"
+    },
+    {
+      "id": "yeast",
+      "text": "1/4 tsp instant yeast"
+    },
+    {
+      "id": "salt",
+      "text": "1 1/4 tsp salt"
+    },
+    {
+      "id": "water",
+      "text": "1 1/2 cups (355 mL) cool water"
+    },
+    {
+      "id": "oil",
+      "text": "1 Tbsp oil for the skillet",
+      "notes": [
+        "plus more for pan"
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "id": "mix",
+      "kind": "transform",
+      "instruction": "Stir flour, yeast, salt, and water into a shaggy dough",
+      "label": "mix",
+      "uses": [
+        {
+          "id": "u-flour",
+          "source": {
+            "kind": "ingredient",
+            "ingredientId": "flour"
+          }
+        },
+        {
+          "id": "u-yeast",
+          "source": {
+            "kind": "ingredient",
+            "ingredientId": "yeast"
+          }
+        },
+        {
+          "id": "u-salt",
+          "source": {
+            "kind": "ingredient",
+            "ingredientId": "salt"
+          }
+        },
+        {
+          "id": "u-water",
+          "source": {
+            "kind": "ingredient",
+            "ingredientId": "water"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "id": "out-dough",
+          "name": "shaggy dough"
+        }
+      ]
+    },
+    {
+      "id": "proof",
+      "kind": "wait",
+      "instruction": "Cover and rest at room temperature 12–18 hours",
+      "label": "proof",
+      "uses": [
+        {
+          "id": "u-dough",
+          "source": {
+            "kind": "output",
+            "outputId": "out-dough"
+          }
+        }
+      ],
+      "duration": {
+        "raw": "12–18 hr",
+        "minMinutes": 720,
+        "maxMinutes": 1080
+      },
+      "outputs": [
+        {
+          "id": "out-proofed",
+          "name": "proofed dough"
+        }
+      ]
+    },
+    {
+      "id": "oil-pan",
+      "kind": "setup",
+      "instruction": "Oil a cast-iron skillet (can be done during the last hour of proof)",
+      "uses": [
+        {
+          "id": "u-oil",
+          "source": {
+            "kind": "ingredient",
+            "ingredientId": "oil"
+          }
+        }
+      ]
+    },
+    {
+      "id": "heat",
+      "kind": "setup",
+      "instruction": "Preheat oven to 450°F (230°C)",
+      "uses": [],
+      "temperature": {
+        "raw": "450°F (230°C)"
+      }
+    },
+    {
+      "id": "bake",
+      "kind": "transform",
+      "instruction": "Turn dough into skillet and bake 35–40 minutes",
+      "label": "bake",
+      "uses": [
+        {
+          "id": "u-proofed",
+          "source": {
+            "kind": "output",
+            "outputId": "out-proofed"
+          }
+        }
+      ],
+      "after": [
+        "oil-pan",
+        "heat"
+      ],
+      "duration": {
+        "raw": "35–40 min",
+        "minMinutes": 35,
+        "maxMinutes": 40
+      },
+      "temperature": {
+        "raw": "450°F (230°C)"
+      },
+      "attention": "passive"
+    }
+  ]
+}

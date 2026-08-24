@@ -1,0 +1,36 @@
+{
+  "version": "rgf/0-draft",
+  "meta": {
+    "title": "Soft Whipped Cream (chill bowl first)",
+    "servings": "about 2 cups",
+    "source": "original fixture (setup prerequisites)"
+  },
+  "ingredients": [
+    { "id": "cream", "text": "1 cup (240 mL) heavy cream, cold" },
+    { "id": "sugar", "text": "1 Tbsp powdered sugar" },
+    { "id": "vanilla", "text": "1/2 tsp vanilla extract" }
+  ],
+  "steps": [
+    {
+      "id": "chill",
+      "kind": "setup",
+      "instruction": "Chill a metal bowl and whisk (or beaters) for 10 minutes",
+      "label": "chill bowl and whisk",
+      "uses": [],
+      "duration": { "raw": "10 min", "minMinutes": 10, "maxMinutes": 10 }
+    },
+    {
+      "id": "whip",
+      "kind": "transform",
+      "instruction": "Whip cream, sugar, and vanilla to soft peaks",
+      "label": "whip to soft peaks",
+      "uses": [
+        { "id": "u-cream", "source": { "kind": "ingredient", "ingredientId": "cream" } },
+        { "id": "u-sugar", "source": { "kind": "ingredient", "ingredientId": "sugar" } },
+        { "id": "u-van", "source": { "kind": "ingredient", "ingredientId": "vanilla" } }
+      ],
+      "after": ["chill"],
+      "outputs": [{ "id": "out-cream", "name": "whipped cream" }]
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "version": "rgf/0-draft",
+  "meta": {
+    "title": "Basic Red Wine Vinaigrette",
+    "servings": "about 1/4 cup",
+    "source": "original fixture"
+  },
+  "ingredients": [
+    { "id": "oil", "text": "3 Tbsp (45 mL) olive oil" },
+    { "id": "vinegar", "text": "1 Tbsp (15 mL) red wine vinegar" },
+    { "id": "mustard", "text": "1 tsp Dijon mustard" },
+    { "id": "salt", "text": "pinch of salt", "notes": ["to taste"] },
+    { "id": "pepper", "text": "freshly ground black pepper", "notes": ["to taste"] }
+  ],
+  "steps": [
+    {
+      "id": "whisk",
+      "kind": "transform",
+      "instruction": "Whisk oil, vinegar, mustard, salt, and pepper until emulsified",
+      "label": "whisk",
+      "uses": [
+        { "id": "u-oil", "source": { "kind": "ingredient", "ingredientId": "oil" } },
+        { "id": "u-vin", "source": { "kind": "ingredient", "ingredientId": "vinegar" } },
+        { "id": "u-must", "source": { "kind": "ingredient", "ingredientId": "mustard" } },
+        { "id": "u-salt", "source": { "kind": "ingredient", "ingredientId": "salt" } },
+        { "id": "u-pep", "source": { "kind": "ingredient", "ingredientId": "pepper" } }
+      ],
+      "outputs": [{ "id": "out-dressing", "name": "vinaigrette" }]
+    }
+  ]
+}

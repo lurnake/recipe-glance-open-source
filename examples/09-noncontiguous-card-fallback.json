@@ -1,0 +1,97 @@
+{
+  "version": "rgf/0-draft",
+  "meta": {
+    "title": "Hostile Non-Interval Graph (expects card fallback)",
+    "servings": "1 demo",
+    "source": "synthetic hostile fixture",
+    "notes": "Four independent preps merge in crossing pairs. No linear ingredient order makes every mix step's transitive leaves contiguous — layout must fall back to card."
+  },
+  "ingredients": [
+    { "id": "w", "text": "Component W" },
+    { "id": "x", "text": "Component X" },
+    { "id": "y", "text": "Component Y" },
+    { "id": "z", "text": "Component Z" }
+  ],
+  "steps": [
+    {
+      "id": "prep-w",
+      "kind": "transform",
+      "instruction": "Prep W",
+      "label": "prep",
+      "uses": [
+        { "id": "u-w", "source": { "kind": "ingredient", "ingredientId": "w" } }
+      ],
+      "outputs": [{ "id": "out-w", "name": "prepared W" }]
+    },
+    {
+      "id": "prep-x",
+      "kind": "transform",
+      "instruction": "Prep X",
+      "label": "prep",
+      "uses": [
+        { "id": "u-x", "source": { "kind": "ingredient", "ingredientId": "x" } }
+      ],
+      "outputs": [{ "id": "out-x", "name": "prepared X" }]
+    },
+    {
+      "id": "prep-y",
+      "kind": "transform",
+      "instruction": "Prep Y",
+      "label": "prep",
+      "uses": [
+        { "id": "u-y", "source": { "kind": "ingredient", "ingredientId": "y" } }
+      ],
+      "outputs": [{ "id": "out-y", "name": "prepared Y" }]
+    },
+    {
+      "id": "prep-z",
+      "kind": "transform",
+      "instruction": "Prep Z",
+      "label": "prep",
+      "uses": [
+        { "id": "u-z", "source": { "kind": "ingredient", "ingredientId": "z" } }
+      ],
+      "outputs": [{ "id": "out-z", "name": "prepared Z" }]
+    },
+    {
+      "id": "mix-wy",
+      "kind": "transform",
+      "instruction": "Combine W and Y",
+      "label": "mix W+Y",
+      "uses": [
+        { "id": "u-ow", "source": { "kind": "output", "outputId": "out-w" } },
+        { "id": "u-oy", "source": { "kind": "output", "outputId": "out-y" } }
+      ]
+    },
+    {
+      "id": "mix-xz",
+      "kind": "transform",
+      "instruction": "Combine X and Z",
+      "label": "mix X+Z",
+      "uses": [
+        { "id": "u-ox", "source": { "kind": "output", "outputId": "out-x" } },
+        { "id": "u-oz", "source": { "kind": "output", "outputId": "out-z" } }
+      ]
+    },
+    {
+      "id": "mix-wx",
+      "kind": "transform",
+      "instruction": "Combine W and X",
+      "label": "mix W+X",
+      "uses": [
+        { "id": "u-ow2", "source": { "kind": "output", "outputId": "out-w" } },
+        { "id": "u-ox2", "source": { "kind": "output", "outputId": "out-x" } }
+      ]
+    },
+    {
+      "id": "mix-yz",
+      "kind": "transform",
+      "instruction": "Combine Y and Z",
+      "label": "mix Y+Z",
+      "uses": [
+        { "id": "u-oy2", "source": { "kind": "output", "outputId": "out-y" } },
+        { "id": "u-oz2", "source": { "kind": "output", "outputId": "out-z" } }
+      ]
+    }
+  ]
+}

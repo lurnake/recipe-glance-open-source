@@ -1,0 +1,17 @@
+node_modules
+dist
+coverage
+.DS_Store
+*.log
+.env
+.env.*
+!.env.example
+.dev.vars
+.turbo
+.wrangler
+playwright-report
+test-results
+eval/reports
+
+# MCP Registry signing key — never commit
+mcp-registry-key.pem

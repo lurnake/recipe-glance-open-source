@@ -1,0 +1,123 @@
+{
+  "version": "rgf/0-draft",
+  "meta": {
+    "title": "Lemon Snack Cake with Glaze and Cream",
+    "servings": "8",
+    "source": "original fixture (multi-component assembly)"
+  },
+  "ingredients": [
+    { "id": "flour", "text": "1 1/2 cups (180 g) all-purpose flour" },
+    { "id": "sugar-cake", "text": "3/4 cup (150 g) sugar" },
+    { "id": "baking_powder", "text": "1 1/2 tsp baking powder" },
+    { "id": "salt", "text": "1/4 tsp salt" },
+    { "id": "milk", "text": "1/2 cup (120 mL) milk" },
+    { "id": "oil", "text": "1/3 cup (80 mL) neutral oil" },
+    { "id": "egg", "text": "1 large egg" },
+    { "id": "lemon-zest", "text": "zest of 1 lemon" },
+    { "id": "pwdered", "text": "1 cup (120 g) powdered sugar" },
+    { "id": "lemon-juice", "text": "2 Tbsp lemon juice" },
+    { "id": "cream", "text": "3/4 cup (180 mL) heavy cream" },
+    { "id": "sugar-cream", "text": "1 Tbsp sugar" }
+  ],
+  "steps": [
+    {
+      "id": "heat",
+      "kind": "setup",
+      "instruction": "Preheat oven to 350°F (175°C); grease an 8-in pan",
+      "uses": []
+    },
+    {
+      "id": "dry",
+      "kind": "transform",
+      "instruction": "Whisk flour, sugar, baking powder, and salt",
+      "label": "whisk dry",
+      "uses": [
+        { "id": "u-flour", "source": { "kind": "ingredient", "ingredientId": "flour" } },
+        { "id": "u-sc", "source": { "kind": "ingredient", "ingredientId": "sugar-cake" } },
+        { "id": "u-bp", "source": { "kind": "ingredient", "ingredientId": "baking_powder" } },
+        { "id": "u-salt", "source": { "kind": "ingredient", "ingredientId": "salt" } }
+      ],
+      "outputs": [{ "id": "out-dry", "name": "dry mix" }]
+    },
+    {
+      "id": "wet",
+      "kind": "transform",
+      "instruction": "Whisk milk, oil, egg, and lemon zest",
+      "label": "whisk wet",
+      "uses": [
+        { "id": "u-milk", "source": { "kind": "ingredient", "ingredientId": "milk" } },
+        { "id": "u-oil", "source": { "kind": "ingredient", "ingredientId": "oil" } },
+        { "id": "u-egg", "source": { "kind": "ingredient", "ingredientId": "egg" } },
+        { "id": "u-zest", "source": { "kind": "ingredient", "ingredientId": "lemon-zest" } }
+      ],
+      "outputs": [{ "id": "out-wet", "name": "wet mix" }]
+    },
+    {
+      "id": "batter",
+      "kind": "transform",
+      "instruction": "Stir wet into dry just until combined",
+      "label": "combine",
+      "uses": [
+        { "id": "u-dry", "source": { "kind": "output", "outputId": "out-dry" } },
+        { "id": "u-wet", "source": { "kind": "output", "outputId": "out-wet" } }
+      ],
+      "outputs": [{ "id": "out-batter", "name": "batter" }]
+    },
+    {
+      "id": "bake",
+      "kind": "transform",
+      "instruction": "Bake until a tester comes out clean, 28–32 minutes; cool",
+      "label": "bake",
+      "uses": [
+        { "id": "u-batter", "source": { "kind": "output", "outputId": "out-batter" } }
+      ],
+      "after": ["heat"],
+      "temperature": { "raw": "350°F (175°C)", "value": 350, "unit": "F" },
+      "duration": { "raw": "28–32 min", "minMinutes": 28, "maxMinutes": 32 },
+      "doneness": "a tester comes out clean",
+      "attention": "passive",
+      "equipment": ["8-in pan", "oven"],
+      "outputs": [{ "id": "out-cake", "name": "cooled cake" }]
+    },
+    {
+      "id": "glaze",
+      "kind": "transform",
+      "instruction": "Stir powdered sugar and lemon juice into a thick glaze",
+      "label": "glaze",
+      "uses": [
+        { "id": "u-pw", "source": { "kind": "ingredient", "ingredientId": "pwdered" } },
+        { "id": "u-lj", "source": { "kind": "ingredient", "ingredientId": "lemon-juice" } }
+      ],
+      "outputs": [{ "id": "out-glaze", "name": "lemon glaze" }]
+    },
+    {
+      "id": "chill-bowl",
+      "kind": "setup",
+      "instruction": "Chill a mixing bowl and beaters",
+      "uses": []
+    },
+    {
+      "id": "whip",
+      "kind": "transform",
+      "instruction": "Whip cream with sugar to soft peaks",
+      "label": "whip",
+      "uses": [
+        { "id": "u-cream", "source": { "kind": "ingredient", "ingredientId": "cream" } },
+        { "id": "u-scream", "source": { "kind": "ingredient", "ingredientId": "sugar-cream" } }
+      ],
+      "after": ["chill-bowl"],
+      "outputs": [{ "id": "out-cream", "name": "whipped cream" }]
+    },
+    {
+      "id": "assemble",
+      "kind": "serve",
+      "instruction": "Glaze cake and serve with whipped cream",
+      "label": "assemble",
+      "uses": [
+        { "id": "u-cake", "source": { "kind": "output", "outputId": "out-cake" } },
+        { "id": "u-glaze", "source": { "kind": "output", "outputId": "out-glaze" } },
+        { "id": "u-cream-out", "source": { "kind": "output", "outputId": "out-cream" } }
+      ]
+    }
+  ]
+}

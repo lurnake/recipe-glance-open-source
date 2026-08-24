@@ -1,0 +1,68 @@
+{
+  "version": "rgf/0-draft",
+  "meta": {
+    "title": "Pan-Seared Chicken with Quick Pan Sauce",
+    "servings": "2",
+    "source": "original fixture"
+  },
+  "ingredients": [
+    { "id": "chicken", "text": "2 boneless chicken thighs, patted dry" },
+    { "id": "salt", "text": "kosher salt", "notes": ["to taste"] },
+    { "id": "pepper", "text": "black pepper", "notes": ["to taste"] },
+    { "id": "oil", "text": "1 Tbsp neutral oil" },
+    { "id": "shallot", "text": "1 small shallot, minced" },
+    { "id": "wine", "text": "1/4 cup dry white wine" },
+    { "id": "butter", "text": "1 Tbsp cold butter" }
+  ],
+  "steps": [
+    {
+      "id": "season",
+      "kind": "transform",
+      "instruction": "Season chicken with salt and pepper",
+      "label": "season",
+      "uses": [
+        { "id": "u-ch", "source": { "kind": "ingredient", "ingredientId": "chicken" } },
+        { "id": "u-salt", "source": { "kind": "ingredient", "ingredientId": "salt" } },
+        { "id": "u-pep", "source": { "kind": "ingredient", "ingredientId": "pepper" } }
+      ],
+      "outputs": [{ "id": "out-seasoned", "name": "seasoned chicken" }]
+    },
+    {
+      "id": "sear",
+      "kind": "transform",
+      "instruction": "Sear chicken in oil until cooked through; set aside",
+      "label": "sear",
+      "uses": [
+        { "id": "u-sea", "source": { "kind": "output", "outputId": "out-seasoned" } },
+        { "id": "u-oil", "source": { "kind": "ingredient", "ingredientId": "oil" } }
+      ],
+      "outputs": [
+        { "id": "out-cooked", "name": "cooked chicken" },
+        { "id": "out-fond", "name": "pan fond" }
+      ]
+    },
+    {
+      "id": "sauce",
+      "kind": "transform",
+      "instruction": "Sweat shallot in the pan, deglaze with wine, mount with butter",
+      "label": "pan sauce",
+      "uses": [
+        { "id": "u-fond", "source": { "kind": "output", "outputId": "out-fond" } },
+        { "id": "u-shallot", "source": { "kind": "ingredient", "ingredientId": "shallot" } },
+        { "id": "u-wine", "source": { "kind": "ingredient", "ingredientId": "wine" } },
+        { "id": "u-butter", "source": { "kind": "ingredient", "ingredientId": "butter" } }
+      ],
+      "outputs": [{ "id": "out-sauce", "name": "pan sauce" }]
+    },
+    {
+      "id": "plate",
+      "kind": "serve",
+      "instruction": "Spoon sauce over chicken",
+      "label": "plate",
+      "uses": [
+        { "id": "u-cooked", "source": { "kind": "output", "outputId": "out-cooked" } },
+        { "id": "u-sauce", "source": { "kind": "output", "outputId": "out-sauce" } }
+      ]
+    }
+  ]
+}

@@ -5,6 +5,12 @@ separates material flow (`uses`) from ordering constraints (`after`), so a UI ca
 show what happens to each ingredient, where branches and merges occur, which
 steps overlap, and when the cook is hands-free.
 
+## Use Tabular Recipe first
+
+Most people should use [Tabular Recipe](https://tabularrecipe.com). It handles
+LLM parsing, polished style selection, embeds, and publishing without requiring
+you to run anything.
+
 This repository contains the open-source SDK, renderer, parser pipeline, web
 component, CLI, examples, and tests. It intentionally does **not** include the
 hosted API, billing, deployment configuration, or the commercial style catalog.
@@ -106,6 +112,11 @@ console.log(result.document);
 The prompt asks for JSON only, validates the response against the schema, checks
 graph invariants, and attempts one repair round if validation fails.
 
+The prompt lives in
+[`packages/parse/src/prompt.ts`](./packages/parse/src/prompt.ts). That module
+contains the system prompt, few-shot example, user-prompt builders, and repair
+prompt.
+
 ## Embed
 
 Build `packages/embed`, load its output, and add:
@@ -136,6 +147,8 @@ See [docs/format.md](./docs/format.md). In short:
 - Unsafe or non-contiguous graphs fall back to an ordered card list.
 
 ## Attribution
+
+Created and maintained by [@joonaheino](https://github.com/joonaheino).
 
 This project independently implements a compact tabular recipe presentation.
 The underlying visual idea was devised by Michael Chu at

@@ -39,8 +39,8 @@ export type ProviderConfig = {
 
 /**
  * Create an LLM provider from env-style config.
- * Defaults: Gemini Flash-Lite when GEMINI_API_KEY set;
- * else xAI when XAI_API_KEY set; else mock.
+ * Defaults: Gemini when GEMINI_API_KEY is set, then xAI, then an
+ * OpenAI-compatible provider, then the offline mock.
  */
 export function createProvider(config: ProviderConfig = {}): LlmProvider {
   const provider =
@@ -288,7 +288,7 @@ export function createMockProvider(): LlmProvider {
         version: "rgf/0-draft",
         meta: {
           title: title.slice(0, 80),
-          notes: "Parsed with mock provider (set GEMINI_API_KEY or XAI_API_KEY for real parse)",
+          notes: "Parsed with offline mock provider; configure a real LLM for full parsing.",
         },
         ingredients,
         steps: [

@@ -2,7 +2,7 @@
   "name": "recipe-glance-open-source",
   "private": true,
   "version": "0.0.1",
-  "description": "Recipe Glance Format (RGF) — operation-graph recipes with a basic open-source renderer",
+  "description": "Recipe Glance Format (RGF) \u2014 operation-graph recipes with a basic open-source renderer",
   "license": "MIT",
   "scripts": {
     "build": "pnpm -r run build",
@@ -14,13 +14,26 @@
     "eval": "pnpm --filter @recipe-glance/eval eval"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=24.22.1 <25"
   },
   "packageManager": "pnpm@9.15.9",
   "devDependencies": {
     "@types/node": "^22.10.7",
     "tsx": "^4.19.2",
     "typescript": "^5.7.3",
-    "vitest": "^3.0.5"
+    "vitest": "^3.0.5",
+    "vite": "7.3.7"
+  },
+  "pnpm": {
+    "overrides": {
+      "vitest@>=2.1.0 <4.1.11": "4.1.12",
+      "@vitest/mocker@>=2.1.0 <4.1.11": "4.1.12",
+      "source-map-js@>=1.0.0 <1.2.2": ">=1.2.2",
+      "tinypool@<=2.1.0": ">=2.1.1",
+      "tinypool@<2.1.2": ">=2.1.2",
+      "vite@>=7.0.0 <=7.3.6": ">=7.3.7",
+      "@vitest/mocker@>=2.1.0-beta.7 <4.1.12": "4.1.12",
+      "vite": "7.3.7"
+    }
   }
 }
